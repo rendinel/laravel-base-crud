@@ -9,11 +9,11 @@
     </head>
     <body>
 
-        <h1>Beer Catalogue</h1>
+      <h1>Beer Catalogue</h1>
 
-        {{-- @foreach ($beers as $beer)
-          {{$beer->brewer}}
-        @endforeach --}}
+      @foreach ($beers as $beer)
+        <p>{{$beer->brewer}}</p>
+      @endforeach
 
     </body>
 </html>

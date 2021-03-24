@@ -14,12 +14,12 @@ class CreateBeersTable extends Migration
     public function up()
     {
         Schema::create('beers', function (Blueprint $table) {
-                $table->id();
-                $table->string('brewer', 255);
-                $table->string('name', 255);
-                $table->float('price', 6, 2);
-                $table->string('cover', 2048);
-                $table->timestamps();
+            $table->id();
+            $table->string('brewer', 255);
+            $table->string('name', 255);
+            $table->float('price', 6, 2);
+            $table->string('cover', 2048);
+            $table->timestamps();
         });
     }
 

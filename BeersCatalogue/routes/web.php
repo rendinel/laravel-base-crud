@@ -13,4 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'BaseController@index');
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::resource('/beers', 'BeerController');
