@@ -1,4 +1,4 @@
-
+{{--
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -12,11 +12,11 @@
     </head>
     <body>
 
-      {{-- <h1>Beer Catalogue</h1>
+      <h1>Beer Catalogue</h1>
 
       @foreach ($beers as $beer)
         <p>{{$beer->brewer}}</p>
-      @endforeach --}}
+      @endforeach
 
         <div class="card" style="width: 10rem;">
             <img src="{{$beer->cover}}" class="card-img-top" alt="Card image cap">
@@ -30,4 +30,18 @@
 
 
     </body>
-</html
+</html --}}
+@extends('base')
+
+@section('title','Show')
+
+@section('content')
+<div class="card" style="width: 10rem;">
+    <img src="{{$beer->cover}}" class="card-img-top" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">{{$beer->brewer}}</h5>
+        <p>{{$beer->name}}</p>
+        <a href="/beers" class="btn btn-primary">Return</a>
+    </div>
+</div>
+@endsection

@@ -1,4 +1,4 @@
-
+{{--
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -12,11 +12,11 @@
     </head>
     <body>
 
-      {{-- <h1>Beer Catalogue</h1>
+      <h1>Beer Catalogue</h1>
 
       @foreach ($beers as $beer)
         <p>{{$beer->brewer}}</p>
-      @endforeach --}}
+      @endforeach
 
       <table class="table">
         <thead class="thead-dark">
@@ -32,9 +32,9 @@
          @foreach ($beers as $beer)
           <tr>
             <th scope="row">{{$beer->id}}</th>
-            {{-- <td><a href="/beers/{{$beer->id}}">{{$beer->brewer}}</a></td> --}}
+            <td><a href="/beers/{{$beer->id}}">{{$beer->brewer}}</a></td>
             <td><a href="{{route('beers.show', ['beer' => $beer->id ])}}">{{$beer->brewer}}</a></td>
-            {{-- <td><a href="{{route('beers.show', compact('beer'))}}">{{$beer}}</a></td> --}}
+            <td><a href="{{route('beers.show', compact('beer'))}}">{{$beer}}</a></td>
             <td>{{$beer->name}}</td>
             <td>{{$beer->price}}</td>
             <td><img src="{{$beer->cover}}" alt=""></td>
@@ -46,4 +46,47 @@
 
 
     </body>
-</html
+</html --}}
+
+@extends('base')
+
+@section('title', 'Index')
+
+@section('content')
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Brewer</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Cover</th>
+        <th scope="col">Icon</th>
+      </tr>
+    </thead>
+    <tbody>
+     @foreach ($beers as $beer)
+      <tr>
+        <th scope="row">{{$beer->id}}</th>
+        {{-- <td><a href="/beers/{{$beer->id}}">{{$beer->brewer}}</a></td> --}}
+        <td><a href="{{route('beers.show', ['beer' => $beer->id ])}}">{{$beer->brewer}}</a></td>
+        {{-- <td><a href="{{route('beers.show', compact('beer'))}}">{{$beer}}</a></td> --}}
+        <td>{{$beer->name}}</td>
+        <td>{{$beer->price}}</td>
+        <td><img src="{{$beer->cover}}" alt=""></td>
+        <td><a href="/beers/create" class="btn btn-primary">Form</a></td>
+        <td>
+            <a href="{{route('beers.show', ['beer' => $beer->id ])}}">
+                <i class="fas fa-eye"></i>
+            </a>
+        </td>
+        <td>
+            <a href="{{route('beers.edit', ['beer' => $beer->id ])}}">
+                <i class="fas fa-eye"></i>
+            </a>
+        </td>
+      </tr>
+      @endforeach
+    </tbody>
+  </table>
+@endsection

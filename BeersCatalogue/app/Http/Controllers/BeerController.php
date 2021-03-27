@@ -25,7 +25,7 @@ class BeerController extends Controller
      */
     public function create()
     {
-        //
+        return view('beers.create');
     }
 
     /**
@@ -36,7 +36,28 @@ class BeerController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'brewer' => 'required|max:255',
+            'name' => 'required',
+            'price' => 'required|numeric|between:0,9999.99',
+            'cover' => 'required'
+            ]);
 
+        $data = $request->all();
+
+        // $beer = new Beer();
+        // $beer->brewer = $data['brewer'];
+        // $beer->name = $data['name'];
+        // $beer->price = $data['price'];
+        // $beer->cover = $data['cover'];
+        // $beer->save();
+
+        $beer = new Beer();
+        $beer->fill($data);
+        $beer->save();
+
+        $beerStored = Beer::orderBy('id', 'desc')->first();
+        return redirect()->route('beers.show', $beerStored);
     }
 
     /**
@@ -53,24 +74,28 @@ class BeerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Beer $beer
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Beer $beer)
     {
-        //
+        return view('beers.edit', compact('beer'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  Beer $beer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Beer $beer)
     {
-        //
+        $data = $request->all();
+
+        $beer->update($data);
+
+        return redirect()->route('beers.show', compact('beer'));
     }
 
     /**
